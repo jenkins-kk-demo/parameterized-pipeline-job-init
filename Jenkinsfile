@@ -1,4 +1,3 @@
-
 pipeline {
   agent any
   stages {
@@ -15,7 +14,7 @@ pipeline {
         junit(testResults: 'target/surefire-reports/TEST-*.xml', keepProperties: true, keepTestNames: true)
       }
     }
-    
+
     stage('Containerization') {
       steps {
         sh 'echo Docker Build Image..'
@@ -29,16 +28,16 @@ pipeline {
         sh 'echo Deploy to Kubernetes using ArgoCD'
       }
     }
-    
+
     stage('Integration Testing') {
       steps {
-        sh "sleep 10s"
+        sh 'sleep 10s'
         sh 'echo Testing using cURL commands......'
       }
     }
+
   }
   tools {
     maven 'M398'
   }
-
 }
